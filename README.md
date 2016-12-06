@@ -3,4 +3,4 @@
 #https://community.c9.io/t/getting-started-with-laravel/1608
 # http://stackoverflow.com/questions/8775850/how-to-add-files-and-folder-to-github-repo
 #http://nereida.deioc.ull.es/~lpp/perlexamples/node1143.html
-
+# rember to delete all laravel file and move to main project folder 
