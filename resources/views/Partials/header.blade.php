@@ -19,10 +19,18 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i>User Management <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href=" {{route('User.signup')  }} ">Signup</a></li>
-            <li><a href=" {{route('User.signin')  }} ">Signup</a></li>
+            @if(Auth::check())
+            <li><a href=" {{route('User.profile')  }} ">User Profile</a></li>
+            
            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a href="{{ route('User.logout')  }}">Logout</a></li>            
+            
+            @else
+            <li><a href=" {{route('User.signup')  }} ">Signup</a></li>
+             <li><a href=" {{route('User.signin')  }} ">Signin</a></li>
+      
+            @endif
+
           </ul>
         </li>
       </ul>
