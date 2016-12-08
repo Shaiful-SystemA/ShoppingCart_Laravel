@@ -26,9 +26,22 @@ class ProductController extends Controller
         $cart->add($product, $product->id);
         
         $request->session()->put('cart', $cart);
-        dd($request->session()->get('cart'));
+        //dd($request->session()->get('cart'));
         return redirect()->route('product.index');
             
+    }
+    
+    public function getCart(){
+        
+        if(!Session::has('cart')){
+            
+            return view('Shop.shopping-cart', ['products' => null]);
+        }
+        
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+        return view('Shop.shopping-cart',['products' => $cart->items, 'totalPrice' => 
+        $cart->totalPrice]);
     }
     
 }
