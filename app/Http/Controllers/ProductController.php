@@ -21,7 +21,7 @@ class ProductController extends Controller
     
     public function getAddToCart(Request $request, $id){
         $product = Product::find($id);
-        $oldCart = Session::has('cart') ? Session::get('cart') : null ;
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
         $cart->add($product, $product->id);
         
@@ -35,13 +35,24 @@ class ProductController extends Controller
         
         if(!Session::has('cart')){
             
-            return view('Shop.shopping-cart', ['products' => null]);
+            return view('Shop.shopping-cart');
         }
         
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
-        return view('Shop.shopping-cart',['products' => $cart->items, 'totalPrice' => 
-        $cart->totalPrice]);
+        return view('Shop.shopping-cart',['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
+    
+    
+    public function getCheckout(){
+        
+        if(!Session::has('cart')){
+            return view('Shop.shopping-cart');
+        }
+        $oldCart =Session::get('cart');
+        $cart = new Cart($oldCart);
+        $total = $cart->totalPrice;
+        return view('Shop.checkout', ['total' => $total]);   
+    } 
     
 }
