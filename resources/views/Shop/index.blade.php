@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-  @if(Session::has('success')
+  @if(Session::has('success'))
   <div class="row">
       
       <div "col-sm-6 col-md-4 col-md-offset-4  col-sm-offset-3">
@@ -18,7 +18,6 @@
       </div>
       
   </div>
-
   @endif
   @foreach($products->chunk(3) as $productChunk)
 <div class="row">
