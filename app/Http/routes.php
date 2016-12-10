@@ -26,9 +26,26 @@ Route::get('/add-to-cart/{id}', [
     
     'uses' => 'ProductController@getAddToCart',
     'as' => 'product.addToCart'
+    ]);
+
+Route::get('/reduce/{id}',[
     
+    'uses'=>'ProductController@getAddToCart',
+    'as' => 'product.reduceByOne'
     
     ]);
+
+
+Route::get('/reduce/{id}',[
+    
+    'uses'=>'ProductController@getRemoveItem',
+    'as' => 'product.remove'
+
+    ]);
+
+
+
+
 
 
 Route::get('/shopping-cart', [
@@ -42,7 +59,8 @@ Route::get('/shopping-cart', [
 
 Route::get('/checkout',[
     'uses' => 'ProductController@getCheckout',
-    'as' => 'checkout'
+    'as' => 'checkout',
+    'middleware' => 'auth'
     
     
     ]);
@@ -50,24 +68,20 @@ Route::get('/checkout',[
 
 Route::post('/checkout',[
     'uses' => 'ProductController@postCheckout',
-    'as' => 'checkout'
+    'as' => 'checkout',
+    'middleware'=> 'auth'
     
     ]);
-
-
 
 
 Route::group(['prefix' =>'user'],function(){
     
     Route::group(['middleware' => 'guest'], function(){
        
-       
-    
     Route::get('/signup',[
     'uses' => 'UserController@getSignup',
     'as' => 'User.signup'
 
-    
     ] );
 
     
